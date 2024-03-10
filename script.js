@@ -28,6 +28,10 @@ function render() {
 }
 
 function renderWinner() {
+  if (winner === "tie") {
+    winningMessage.innerHTML = `Game ends in a tie!!`;
+    return;
+  }
   if (winner) {
     winningMessage.innerHTML = `Player ${winner !== 1 ? "O" : "X"} Wins!`;
     return;
@@ -36,6 +40,10 @@ function renderWinner() {
 }
 
 function renderCurrentPlayerMessage() {
+  if (checkForEmptyCells() === false) {
+    winner = "tie";
+    return;
+  }
   if (!winner) {
     currentPlayerMessage.innerHTML = `Player ${turn === 1 ? "O" : "X"}'s turn`;
     return;
@@ -54,9 +62,9 @@ function renderBoard() {
 
 squares.forEach(function (el) {
   el.addEventListener("click", function (e) {
-    e.preventDefault()
-    if(winner){
-        return 
+    e.preventDefault();
+    if (winner) {
+      return;
     }
     playTurn(e.target);
   });
@@ -126,6 +134,17 @@ function playTurn(clickedSquare) {
   turn *= -1;
   checkForWinner();
   render();
+}
+function checkForEmptyCells() {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[0].length; j++) {
+      if (board[i][j] == null) {
+        return true;
+      }
+    }
+  }
+
+  return false;
 }
 
 // handle a player clicking the replay button
