@@ -9,6 +9,15 @@ body {
   font-family: "Roboto", sans-serif;
   font-weight: 100;
   font-style: normal;
+  color: white;
+}
+
+h1 {
+  font-family: "Pacifico", cursive;
+  font-weight: bold;
+  color: white;
+  font-size: 3rem;
+  margin: 0;
 }
 
 #board {
@@ -20,6 +29,8 @@ body {
   border-radius: 15px;
   border-style: dashed;
   padding: 1rem;
+  background-color: rgba(209, 224, 171, 0.484);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
 }
 
 #board div {
@@ -28,6 +39,25 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #dad7cd;
   border: 1px solid #a3b18a;
+  background-color: #3a5a40;
   cursor: pointer;
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+.button-container {
+  padding: 2rem 0rem;
+}
+
+.button-container button {
+  background-color: #a3b18a;
+  color: white;
+  font-weight: 200;
+  width: 200px;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }

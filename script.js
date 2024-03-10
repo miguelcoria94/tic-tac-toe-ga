@@ -1,11 +1,11 @@
 let board;
 let turn;
 let winner;
-const boardPairing = [];
 
 const currentPlayerMessage = document.querySelector("#current-player");
 const winningMessage = document.querySelector("#winning-message");
 const squares = [...document.querySelectorAll("#board > div")];
+const resetButton = document.querySelector("#reset-game");
 init();
 
 function init() {
@@ -18,37 +18,53 @@ function init() {
 
   turn = 1;
   winner = null;
+
+  winningMessage.innerHTML = "";
+  currentPlayerMessage.innerHTML = `Player O's turn`;
+
   render();
 }
 
 function render() {
   renderBoard();
+
   renderCurrentPlayerMessage();
+
   renderWinner();
+  renderControls();
+}
+
+function renderControls() {
+  if (winner !== null || checkForEmptyCells() === false) {
+    resetButton.style.visibility = "visible";
+  } else {
+    resetButton.style.visibility = "hidden";
+  }
 }
 
 function renderWinner() {
-  if (winner === "tie") {
+  if (winner == -1) {
+    winningMessage.innerHTML = `Player O wins`;
+    return;
+  }
+  if (winner == 1) {
+    winningMessage.innerHTML = `Player X wins`;
+    return;
+  }
+  if (winner === null && checkForEmptyCells() == false) {
     winningMessage.innerHTML = `Game ends in a tie!!`;
     return;
   }
-  if (winner) {
-    winningMessage.innerHTML = `Player ${winner !== 1 ? "O" : "X"} Wins!`;
-    return;
-  }
-  return;
 }
 
 function renderCurrentPlayerMessage() {
   if (checkForEmptyCells() === false) {
-    winner = "tie";
-    return;
+    currentPlayerMessage.innerHTML = ``;
   }
   if (!winner) {
     currentPlayerMessage.innerHTML = `Player ${turn === 1 ? "O" : "X"}'s turn`;
     return;
   }
-  return;
 }
 
 function renderBoard() {
@@ -59,6 +75,8 @@ function renderBoard() {
     }
   }
 }
+
+resetButton.addEventListener("click", resetGame);
 
 squares.forEach(function (el) {
   el.addEventListener("click", function (e) {
@@ -76,7 +94,7 @@ function checkForWinner() {
       let letter = board[i][j];
       if (letter != null && checkNeighbors(i, j, letter) >= 2) {
         winner = turn;
-        return;
+        return winner;
       }
     }
   }
@@ -119,6 +137,10 @@ function checkNeighbors(
   return 0;
 }
 
+function resetGame() {
+  init();
+}
+
 function playTurn(clickedSquare) {
   let col = clickedSquare.classList[0][1];
   let row = clickedSquare.classList[0][3];
@@ -131,8 +153,12 @@ function playTurn(clickedSquare) {
     board[row][col] = "X";
   }
 
-  turn *= -1;
+  if (winner !== "tie") {
+    turn *= -1;
+  }
+
   checkForWinner();
+
   render();
 }
 function checkForEmptyCells() {
@@ -146,5 +172,3 @@ function checkForEmptyCells() {
 
   return false;
 }
-
-// handle a player clicking the replay button
