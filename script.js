@@ -2,6 +2,10 @@ let board;
 let turn;
 let winner;
 
+const jsConfetti = new JSConfetti();
+
+jsConfetti.addConfetti();
+
 const currentPlayerMessage = document.querySelector("#current-player");
 const winningMessage = document.querySelector("#winning-message");
 const squares = [...document.querySelectorAll("#board > div")];
@@ -45,10 +49,12 @@ function renderControls() {
 function renderWinner() {
   if (winner == -1) {
     winningMessage.innerHTML = `Player O wins 🏆`;
+    jsConfetti.addConfetti();
     return;
   }
   if (winner == 1) {
     winningMessage.innerHTML = `Player X wins 🏆`;
+    jsConfetti.addConfetti();
     return;
   }
   if (winner === null && checkForEmptyCells() == false) {
@@ -138,6 +144,7 @@ function checkNeighbors(
 }
 
 function resetGame() {
+  
   init();
 }
 
