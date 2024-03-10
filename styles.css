@@ -5,12 +5,21 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-color: #3a5a40;
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;
 }
 
 #board {
   display: grid;
   grid-template-columns: repeat(3, 5rem);
   grid-template-rows: repeat(3, 5rem);
+  border: 2px solid 344e41;
+  border-width: 0.2rem;
+  border-radius: 15px;
+  border-style: dashed;
+  padding: 1rem;
 }
 
 #board div {
@@ -19,4 +28,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 1px solid #a3b18a;
+  cursor: pointer;
 }
