@@ -44,11 +44,11 @@ function renderControls() {
 
 function renderWinner() {
   if (winner == -1) {
-    winningMessage.innerHTML = `Player O wins`;
+    winningMessage.innerHTML = `Player O wins 🏆`;
     return;
   }
   if (winner == 1) {
-    winningMessage.innerHTML = `Player X wins`;
+    winningMessage.innerHTML = `Player X wins 🏆`;
     return;
   }
   if (winner === null && checkForEmptyCells() == false) {
