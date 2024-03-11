@@ -6,6 +6,11 @@ body {
   align-items: center;
   flex-direction: column;
   background-color: #3a5a40;
+  opacity: 1;
+  background-image: radial-gradient(#323232 0.5px, transparent 0.5px),
+    radial-gradient(#323232 0.5px, #3a5a40 0.5px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
   font-family: "Roboto", sans-serif;
   font-weight: 100;
   font-style: normal;
